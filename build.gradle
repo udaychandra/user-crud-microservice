@@ -1,0 +1,27 @@
+plugins {
+    id "java"
+    id "com.zyxist.chainsaw" version "0.3.1"
+}
+
+sourceCompatibility = "10"
+
+repositories {
+    mavenCentral()
+}
+
+group "ud.api"
+version "0.1.0-SNAPSHOT"
+
+dependencies {
+    compile "io.helidon.webserver:helidon-webserver:$helidonVersion"
+    compile "io.helidon.webserver:helidon-webserver-netty:$helidonVersion"
+    compile "io.helidon.webserver:helidon-webserver-json:$helidonVersion"
+    compile "javax.annotation:javax.annotation-api:$annotationVersion"
+}
+
+task copyAllJars(type: Copy) {
+    from configurations.compileClasspath, "${jar.archivePath}"
+    into "${rootDir}/deploy/mods"
+}
+
+copyAllJars.dependsOn(build)
