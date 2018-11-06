@@ -1,5 +1,6 @@
 package ud.api.services;
 
+import static io.helidon.common.http.Http.Status.*;
 import io.helidon.webserver.Routing;
 import io.helidon.webserver.ServerRequest;
 import io.helidon.webserver.ServerResponse;
@@ -11,11 +12,6 @@ import javax.json.JsonObject;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
-import static io.helidon.webserver.Http.Status.ACCEPTED_202;
-import static io.helidon.webserver.Http.Status.CREATED_201;
-import static io.helidon.webserver.Http.Status.NOT_FOUND_404;
-import static io.helidon.webserver.Http.Status.OK_200;
 
 /**
  * A sample user CRUD service that uses an in-memory JSON map.
@@ -47,7 +43,7 @@ public class UserService implements Service {
                 .add("items", builder.build())
                 .build();
 
-        res.status(OK_200).send(result);
+        res.status(200).send(result);
     }
 
     private synchronized void getHandler(ServerRequest req, ServerResponse res) {

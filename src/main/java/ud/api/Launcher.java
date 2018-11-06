@@ -1,6 +1,6 @@
 package ud.api;
 
-import io.helidon.webserver.Http;
+import static io.helidon.common.http.Http.Status.NOT_FOUND_404;
 import io.helidon.webserver.Routing;
 import io.helidon.webserver.ServerConfiguration;
 import io.helidon.webserver.WebServer;
@@ -37,7 +37,7 @@ public class Launcher {
                 // Simple exception handler.
                 .error(Exception.class, (req, res, ex) -> {
                     // We are masking internal errors.
-                    res.status(Http.Status.BAD_REQUEST_400);
+                    res.status(NOT_FOUND_404);
                     res.send("Unable to parse request");
                     logger.log(Level.SEVERE, "Unable to parse request", ex);
                 })
