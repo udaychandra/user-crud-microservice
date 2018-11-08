@@ -49,3 +49,6 @@ cd ..
 
 isOK "Unable to build custom JRE image"
 
+echo "Preparing Docker image..."
+cd target
+docker build -t mod-demo:latest .
